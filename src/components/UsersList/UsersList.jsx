@@ -6,9 +6,10 @@ import Spinner from "../Spinner";
 import Pagination from "../Pagination";
 
 const UsersList = () => {
-  const users = useSelector((state) => state.users);
-  const hasUsers = !!users.data.length && !users.isLoading;
-  const hasError = !!users.error;
+  let { data, error, isLoading } = useSelector((state) => state.users);
+  const hasUsers = !!data.length && !isLoading;
+  const hasError = !!error;
+  const isEmpty = !hasError && !isLoading && !data.length;
 
   const renderEmpty = () => {
     return (
@@ -19,9 +20,7 @@ const UsersList = () => {
   };
 
   const renderProfileCards = () => {
-    return users.data.map((user) => (
-      <ProfilePreviewCard user={user} key={user.id} />
-    ));
+    return data.map((user) => <ProfilePreviewCard user={user} key={user.id} />);
   };
 
   const renderError = () => {
@@ -30,14 +29,22 @@ const UsersList = () => {
         className="w-full lg:w-2/4 mx-auto flex items-center bg-red-600 text-white text-sm font-bold px-4 py-3"
         role="alert"
       >
-        <p>{users.error}</p>
+        <p>{error}</p>
       </div>
     );
   };
 
   return (
-    <div className="container mx-auto py-8">
-      {users.isLoading && renderEmpty()}
+    <div className="container mx-auto py-8 px-2">
+      {isLoading && renderEmpty()}
+      {isEmpty && (
+        <div
+          className="w-full lg:w-2/4 mx-auto flex items-center bg-blue-600 text-white text-sm font-bold px-4 py-3"
+          role="alert"
+        >
+          <p>No users found.</p>
+        </div>
+      )}
       {hasUsers && !hasError && (
         <>
           <div>{renderProfileCards()}</div>
@@ -46,6 +53,7 @@ const UsersList = () => {
           </div>
         </>
       )}
+
       {hasError && renderError()}
     </div>
   );

@@ -5,8 +5,9 @@ import { useParams, useHistory } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import ProfileCard from "../../components/ProfileCard";
 import Spinner from "../../components/Spinner";
-import NotFound from "../../components/NotFound";
 import RepositoriesList from "../../components/RepositoriesList";
+
+import NotFound from "../NotFound";
 
 import { fetchProfile, clearProfile } from "../../store/ducks/profile";
 
@@ -31,6 +32,10 @@ const Profile = () => {
 
     return () => dispatch(clearProfile());
   }, [dispatch, username]);
+
+  if (hasError) {
+    return <NotFound />;
+  }
 
   return (
     <>
@@ -59,7 +64,6 @@ const Profile = () => {
             </div>
           </div>
         )}
-        {hasError && <NotFound />}
       </div>
     </>
   );

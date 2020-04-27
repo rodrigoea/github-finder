@@ -3,10 +3,12 @@ import { Switch, Route } from "react-router-dom";
 
 import Home from "../containers/Home";
 import Profile from "../containers/Profile";
+import NotFound from "../containers/NotFound";
 
 const appRoutes = [
   { path: "/", exact: true, component: Home },
   { path: "/profile/:username", component: Profile },
+  { component: NotFound },
 ];
 
 const routes = () => {

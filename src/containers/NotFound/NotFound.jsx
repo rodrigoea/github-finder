@@ -2,10 +2,13 @@ import React from "react";
 import { FaGithubSquare, FaArrowCircleLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+import Navbar from "../../components/Navbar";
+
 const NotFound = () => {
   return (
-    <div className="">
-      <div className="flex justify-center items-center">
+    <div>
+      <Navbar />
+      <div className="py-10 flex justify-center items-center">
         <FaGithubSquare size="100" />
         <h1 className="text-center font-thin text-5xl ml-2">404 Not found!</h1>
       </div>

@@ -27,3 +27,13 @@ Run locally:
 ```hash
 yarn start
 ```
+
+## Env Configuration
+
+To have a proper configuration, a `.env` file should be created with the needed values:
+
+```
+REACT_APP_API_URL=http://localhost:8081
+```
+
+_There's already a .env.example file that can be used as an example._

@@ -73,10 +73,10 @@ const Header = () => {
 
   return (
     <>
-      <div className="container m-auto py-16">
-        <h1 className="text-center font-hairline text-5xl">
+      <div className="container m-auto py-10 lg:py-16">
+        <h2 className="text-center font-hairline text-3xl lg:text-5xl">
           Easily find <span className="font-bold">any</span> Github user.
-        </h1>
+        </h2>
         <div className="w-full md:w-1/2 px-3 mx-auto mt-6 mb-6">
           {renderSearch()}
         </div>

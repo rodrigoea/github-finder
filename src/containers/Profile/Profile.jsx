@@ -35,7 +35,7 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className="container m-auto py-16">
+      <div className="container m-auto py-10 lg:py-16">
         {isLoading && (
           <div className="flex justify-center mt-20">
             <Spinner />
@@ -46,7 +46,7 @@ const Profile = () => {
             <div className="w-full lg:w-2/5">
               {!isLoading && !!user && <ProfileCard user={user} />}
             </div>
-            <div className="w-full lg:w-4/5 pl-4 mt-6 lg:mt-0">
+            <div className="w-full lg:w-4/5 px-4 mt-6 lg:mt-0">
               <div className="mb-4 pb-2 border-b">
                 <h2 className="text-2xl font-light inline-flex items-center -mt-1">
                   Repositories{" "}

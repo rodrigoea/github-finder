@@ -22,9 +22,9 @@ const Navbar = () => {
             title="GitHub Finder"
           >
             <FaGithub size="32" />
-            <span className="font-thin text-3xl tracking-tight ml-2">
+            <h1 className="font-thin text-3xl tracking-tight ml-2">
               GitHub Finder
-            </span>
+            </h1>
           </Link>
         </div>
       </nav>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { searchUser, searchClear } from "../../store/ducks/search";
@@ -14,6 +14,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const { isLoading, data } = useSelector((state) => state.search);
   const hasResults = !!data.items;
+  const dropdownRef = useRef(null);
 
   const handleSearch = (e) => {
     const { value } = e.target;
@@ -24,12 +25,10 @@ const Header = () => {
     }
   };
 
-  const clearInput = () => {
-    setTimeout(() => {
-      setInputValue("");
-      dispatch(searchClear());
-    }, 100);
-  };
+  const clearInput = useCallback(() => {
+    setInputValue("");
+    dispatch(searchClear());
+  }, [dispatch]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -39,7 +38,20 @@ const Header = () => {
     }, TYPING_TIMEOUT);
 
     return () => clearTimeout(timeout);
-  }, [inputValue]);
+  }, [dispatch, inputValue]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        clearInput();
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      clearInput();
+    };
+  }, [clearInput, dropdownRef]);
 
   const renderSearch = () => {
     return (
@@ -57,7 +69,6 @@ const Header = () => {
             placeholder="rodrigolabs"
             onChange={handleSearch}
             value={inputValue}
-            onBlur={clearInput}
           />
 
           {isLoading && (
@@ -66,7 +77,11 @@ const Header = () => {
             </div>
           )}
         </div>
-        {hasResults && <SearchResultsList data={data} />}
+        {hasResults && (
+          <div ref={dropdownRef}>
+            <SearchResultsList data={data} />
+          </div>
+        )}
       </div>
     );
   };

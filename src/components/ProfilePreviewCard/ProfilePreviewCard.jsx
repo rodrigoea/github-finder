@@ -1,6 +1,4 @@
 import React from "react";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import { MdGroup, MdEmail, MdLink } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const ProfilePreviewCard = ({ user }) => {

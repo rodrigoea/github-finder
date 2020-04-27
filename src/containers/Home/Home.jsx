@@ -15,7 +15,7 @@ const Home = () => {
     if (!users.data.length) {
       dispatch(fetchUsers());
     }
-  }, []);
+  }, [dispatch, users.data.length]);
 
   return (
     <div>

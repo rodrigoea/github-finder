@@ -65,7 +65,7 @@ const ProfileCard = ({ user }) => {
               <div className="flex items-center">
                 <MdLink size="16" />
                 <span className="flex text-sm ml-2">
-                  <a href={blog} target="_blank">
+                  <a href={blog} target="_blank" rel="noopener noreferrer">
                     {blog}
                   </a>
                 </span>
@@ -86,6 +86,7 @@ const ProfileCard = ({ user }) => {
           <a
             href={`https://github.com/${login}`}
             target="_blank"
+            rel="noopener noreferrer"
             className="transition uppercase duration-300 bg-blue-500 px-4 py-2 rounded text-white shadow hover:shadow-lg mt-4 font-bold text-sm mx-auto"
             title="View Full Profile on GitHub"
           >

@@ -30,7 +30,7 @@ const Profile = () => {
     dispatch(fetchProfile(username));
 
     return () => dispatch(clearProfile());
-  }, []);
+  }, [dispatch, username]);
 
   return (
     <>

@@ -6,7 +6,10 @@ const SearchResultsList = ({ data }) => {
   return (
     <>
       {foundUsers && (
-        <div className="absolute bg-white mt-1 left-0 w-full border rounded shadow-lg h-56 overflow-auto">
+        <div
+          className="absolute bg-white mt-1 left-0 w-full border rounded shadow-lg overflow-auto"
+          style={{ maxHeight: 200 }}
+        >
           {data.items.map((user) => (
             <Link
               key={user.id}

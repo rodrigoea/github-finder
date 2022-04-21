@@ -4,6 +4,8 @@
 
 This application was developed due to participation in the Shaw and Partners job process.
 
+**I've decided to share the code for references :)**
+
 ## How to use
 
 Clone the repository:
